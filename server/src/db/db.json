@@ -1,0 +1,63 @@
+{
+  "parcels": [
+    {
+      "id": 1,
+      "external_id": "PP00012",
+      "customer": 1,
+      "retailer": 1
+    },
+    {
+      "id": 4,
+      "external_id": "PP00024",
+      "customer": 2,
+      "retailer": 3
+    },
+    {
+      "id": 12,
+      "external_id": "PP000422",
+      "customer": 12,
+      "retailer": 12
+    }
+  ],
+  "retailers": [
+    {
+      "id": 1,
+      "name": "Amazon"
+    },
+    {
+      "id": 2,
+      "name": "Foxtel"
+    },
+    {
+      "id": 3,
+      "name": "Decathlon"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "email": "john.doe@mail.com",
+      "name": "John Doe"
+    },
+    {
+      "id": 2,
+      "email": "laura.wan@mail.com",
+      "name": "Laura Wan"
+    },
+    {
+      "id": 3,
+      "email": "charles.williams@mail.com",
+      "name": "Charles Williams"
+    },
+    {
+      "id": 4,
+      "email": "wilson.smith@mail.com",
+      "name": "Wilson Smith"
+    },
+    {
+      "id": 5,
+      "email": "sandra.xi@mail.com",
+      "name": "Sandra Xi"
+    }
+  ]
+}
