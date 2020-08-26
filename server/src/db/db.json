@@ -7,22 +7,22 @@
       "retailer": 1
     },
     {
+      "id": 2,
+      "external_id": "PP00042",
+      "customer": 4,
+      "retailer": 3
+    },
+    {
+      "id": 3,
+      "external_id": "PP00013",
+      "customer": 1,
+      "retailer": 2
+    },
+    {
       "id": 4,
       "external_id": "PP00024",
       "customer": 2,
       "retailer": 3
-    },
-    {
-      "id": 12,
-      "external_id": "PP000422",
-      "customer": 12,
-      "retailer": 12
-    },
-    {
-      "id": 12,
-      "external_id": "PP00042",
-      "customer": 12,
-      "retailer": 12
     }
   ],
   "retailers": [

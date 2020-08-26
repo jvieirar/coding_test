@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // @ts-ignore
 import styles from './ParcelList.module.scss';
+import ParcelItem from './ParcelItem';
 
 const ParcelList = (props) => {
   // properties
@@ -13,7 +14,12 @@ const ParcelList = (props) => {
   return (
     <div className={styles.parcelList}>
       <h1>Parcel List</h1>
-      // TODO: build list items
+      {/* // TODO: build list items */}
+      <ul>
+        {parcels.map((parcel) => (
+          <ParcelItem parcel={parcel} />
+        ))}
+      </ul>
     </div>
   );
 };

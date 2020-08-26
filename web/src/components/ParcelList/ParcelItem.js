@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ParcelItem = (props) => {
-  return <div></div>;
+  // properties
+  const { parcel } = props;
+  return <li key={parcel.id}>{parcel.id}</li>;
 };
 
-ParcelItem.propTypes = {};
+ParcelItem.propTypes = { parcel: PropTypes.object.isRequired };
 
 export default ParcelItem;
