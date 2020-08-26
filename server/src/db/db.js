@@ -7,7 +7,6 @@ function getInstance() {
   if (!db) {
     const dbFile = fs.readFileSync(dbPath);
     db = JSON.parse(dbFile);
-    console.log({ db });
   }
   return db;
 }

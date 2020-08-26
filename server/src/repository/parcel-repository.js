@@ -11,7 +11,6 @@ function getAll() {
 
 function getOne(externalId) {
   const parcel = data['parcels'].find((parcel) => parcel.external_id === externalId);
-  console.log({ gotParcel: parcel });
   return parcel;
 }
 
@@ -43,10 +42,7 @@ function updateOne(parcel) {
     }
     return p;
   });
-  console.log({ updatedParcels });
   _saveParcelsData(updatedParcels);
-  // existingParcel = { ...existingParcel, ...parcel };
-  // console.log({ parcels: data['parcels'] });
   return { ...existingParcel, ...parcel };
 }
 

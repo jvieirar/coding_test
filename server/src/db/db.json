@@ -17,6 +17,12 @@
       "external_id": "PP000422",
       "customer": 12,
       "retailer": 12
+    },
+    {
+      "id": 12,
+      "external_id": "PP00042",
+      "customer": 12,
+      "retailer": 12
     }
   ],
   "retailers": [
