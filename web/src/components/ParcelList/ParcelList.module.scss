@@ -43,6 +43,10 @@
     height: 50px;
     padding: var(--boxing-vertical, --boxing-horizontal);
 
+    &.selected {
+      background-color: #a0a0a0;
+    }
+
     h2 {
       font-size: 1.2em;
       flex: 1;

@@ -9,6 +9,9 @@ const ParcelList = (props) => {
   const { parcels = [] } = props;
   const [retailers, setRetailers] = useState(['']);
   const [filters, setFilters] = useState({ parcelId: '', retailerName: '', customerEmail: '' });
+  const [selected, setSelected] = useState([]);
+
+  console.log({ selected });
 
   // methods
   useEffect(() => {
@@ -27,6 +30,16 @@ const ParcelList = (props) => {
         parcel.retailer.toUpperCase().includes(filters.retailerName.toUpperCase()) &&
         parcel.customer.toUpperCase().includes(filters.customerEmail.toUpperCase())
     );
+  };
+
+  const isSelected = (parcel) => selected.map((sel) => sel.external_id).includes(parcel.external_id);
+
+  const handleOnParcelClick = (parcel) => {
+    if (!isSelected(parcel)) {
+      setSelected((currentSelected) => [...currentSelected, parcel]);
+    } else {
+      setSelected((currentSelected) => currentSelected.filter((sel) => sel.external_id !== parcel.external_id));
+    }
   };
 
   // render
@@ -53,10 +66,11 @@ const ParcelList = (props) => {
           <span>Customer email:</span>
           <input type="text" name="customerEmail" value={filters.customerEmail} onChange={setFilterValue} />
         </label>
+        {selected.length > 0 && <button>Delete ({selected.length})</button>}
       </div>
       <ul>
         {applyFilters(parcels).map((parcel) => (
-          <ParcelItem parcel={parcel} />
+          <ParcelItem parcel={parcel} selected={isSelected(parcel)} onClick={handleOnParcelClick} />
         ))}
       </ul>
     </div>

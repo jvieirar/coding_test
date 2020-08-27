@@ -6,11 +6,16 @@ import styles from './ParcelList.module.scss';
 
 const ParcelItem = (props) => {
   // properties
-  const { parcel } = props;
+  const { parcel, selected, onClick } = props;
+
+  // methods
+  const handleOnClick = () => {
+    onClick && onClick(parcel);
+  };
 
   // render
   return (
-    <li key={parcel.id} className={styles.item}>
+    <li key={parcel.id} className={`${styles.item}${selected ? ` ${styles.selected}` : ''}`} onClick={handleOnClick}>
       <h2>{parcel.external_id}</h2>
       <span className={styles.parcelProp}>{parcel.retailer}</span>
       <span className={styles.parcelProp}>{parcel.customer}</span>
@@ -18,6 +23,6 @@ const ParcelItem = (props) => {
   );
 };
 
-ParcelItem.propTypes = { parcel: PropTypes.object.isRequired };
+ParcelItem.propTypes = { parcel: PropTypes.object.isRequired, selected: PropTypes.bool.isRequired, onClick: PropTypes.func };
 
 export default ParcelItem;
