@@ -14,7 +14,6 @@ const ParcelList = (props) => {
   return (
     <div className={styles.parcelList}>
       <h1>Parcel List</h1>
-      {/* // TODO: build list items */}
       <ul>
         {parcels.map((parcel) => (
           <ParcelItem parcel={parcel} />

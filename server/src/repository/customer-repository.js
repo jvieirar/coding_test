@@ -7,7 +7,7 @@ function getAll() {
 
 function getOne(id) {
   const customer = data['customers'].find((customer) => customer.id === id);
-  return customer;
+  return { ...customer };
 }
 
 module.exports = {

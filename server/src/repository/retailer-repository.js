@@ -7,7 +7,7 @@ function getAll() {
 
 function getOne(id) {
   const retailer = data['retailers'].find((retailer) => retailer.id === id);
-  return retailer;
+  return { ...retailer };
 }
 
 module.exports = {

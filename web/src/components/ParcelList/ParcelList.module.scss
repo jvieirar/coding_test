@@ -1,10 +1,18 @@
 .parcelList {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 
   h1 {
     margin-bottom: 20px;
+  }
+
+  ul {
+    background-color: #fff;
+    height: 100%;
+    padding: 8px;
+    overflow: auto;
   }
 
   .item {

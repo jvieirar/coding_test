@@ -13,8 +13,8 @@ function getOneParcel(externalId) {
     return null;
   }
   // store retailer.name on parcel.retailer
-  parcel.retailer = (retailerRepo.getOne(parcel.retailer) && retailerRepo.getOne(parcel.retailer).name) || parcel.retailer;
-  parcel.customer = (customerRepo.getOne(parcel.customer) && customerRepo.getOne(parcel.customer).email) || parcel.customer;
+  parcel.retailer = (retailerRepo.getOne(parcel.retailer) && retailerRepo.getOne(parcel.retailer).name) || '';
+  parcel.customer = (customerRepo.getOne(parcel.customer) && customerRepo.getOne(parcel.customer).email) || '';
   return parcel;
 }
 

@@ -7,7 +7,6 @@ import styles from './ParcelList.module.scss';
 const ParcelItem = (props) => {
   // properties
   const { parcel } = props;
-  console.log({ parcel });
 
   // render
   return (
