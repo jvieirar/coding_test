@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // @ts-ignore
 import styles from './ParcelList.module.scss';
@@ -7,10 +7,14 @@ import ParcelItem from './ParcelItem';
 const ParcelList = (props) => {
   // properties
   const { parcels = [] } = props;
-  const [retailers, setRetailers] = useState([]);
+  const [retailers, setRetailers] = useState(['']);
   const [filters, setFilters] = useState({ parcelId: '', retailerName: '', customerEmail: '' });
 
   // methods
+  useEffect(() => {
+    setRetailers([...new Set(parcels.map((parcel) => parcel.retailer))]);
+  }, [parcels]);
+
   const setFilterValue = (e) => {
     e.persist();
     setFilters((currentFilters) => ({ ...currentFilters, [e.target.name]: e.target.value }));
@@ -36,7 +40,14 @@ const ParcelList = (props) => {
         </label>
         <label>
           <span>Retailer name:</span>
-          <input type="text" name="retailerName" value={filters.retailerName} onChange={setFilterValue} />
+          {/* <input type="text" name="retailerName" value={filters.retailerName} onChange={setFilterValue} /> */}
+          <select name="retailerName" onChange={setFilterValue} value={filters.retailerName}>
+            {retailers.map((retailer) => (
+              <option value={retailer} key={retailer}>
+                {retailer === '' ? 'All' : retailer}
+              </option>
+            ))}
+          </select>
         </label>
         <label>
           <span>Customer email:</span>

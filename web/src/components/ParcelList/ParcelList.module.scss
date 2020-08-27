@@ -18,10 +18,15 @@
   .filter {
     display: flex;
     flex-direction: column;
+    width: 60%;
     label {
       display: flex;
       flex: 1;
       span {
+        flex: 1;
+      }
+      input,
+      select {
         flex: 1;
       }
     }
