@@ -29,13 +29,13 @@
 
   main {
     display: flex;
-    padding: var(--boxing-horizontal);
+    padding: var(--boxing-vertical);
     height: calc(100% - var(--size-header-height));
-    gap: var(--boxing-horizontal);
+    gap: var(--boxing-vertical);
 
     section {
       flex: 1;
-      background-color: red;
+      background-color: #f2f2f2;
       border-radius: 10px;
     }
   }

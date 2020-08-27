@@ -2,4 +2,31 @@
   display: block;
   height: 100%;
   width: 100%;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 50px;
+    padding: var(--boxing-vertical, --boxing-horizontal);
+
+    h2 {
+      font-size: 1.2em;
+      flex: 1;
+    }
+
+    .parcelProp {
+      flex: 2;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }

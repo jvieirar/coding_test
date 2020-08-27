@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const parcelRepo = require('../repository/parcel-repository');
+// const parcelService = require('../repository/parcel-repository');
+// const retailerRepo = require('../repository/retailer-repository');
+const parcelService = require('../service/parcel-service');
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
@@ -10,13 +12,13 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get('/list', (req, res) => {
-  const parcels = parcelRepo.getAll();
+  const parcels = parcelService.getAllParcels();
   return res.json(parcels);
 });
 
 router.get('/:id', (req, res) => {
   const parcelId = req.params.id;
-  const parcel = parcelRepo.getOne(parcelId);
+  const parcel = parcelService.getOneParcel(parcelId);
   if (parcel) {
     return res.json(parcel);
   } else {
@@ -28,14 +30,14 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const parcel = req.body;
 
-  const created = parcelRepo.createOne(parcel);
+  const created = parcelService.createOneParcel(parcel);
 
   if (created) {
     res.statusCode = 201;
   } else {
     res.statusCode = 409; // resource already exists
   }
-  const parcels = parcelRepo.getAll();
+  const parcels = parcelService.getAllParcels();
   res.json(parcels);
 });
 
@@ -43,7 +45,7 @@ router.put('/:id', (req, res) => {
   const parcel = req.body;
   const parcelId = req.params.id;
   parcel.external_id = parcelId;
-  const updated = parcelRepo.updateOne(parcel);
+  const updated = parcelService.updateOneParcel(parcel);
 
   if (updated) {
     res.statusCode = 200;
@@ -56,7 +58,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const parcelId = req.params.id;
-  const updated = parcelRepo.removeOne(parcelId);
+  const updated = parcelService.removeOneParcel(parcelId);
 
   if (updated) {
     res.statusCode = 200;
