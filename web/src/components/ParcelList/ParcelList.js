@@ -14,7 +14,7 @@ const ParcelList = (props) => {
 
   // methods
   useEffect(() => {
-    setRetailers([...new Set(parcels.map((parcel) => parcel.retailer))]);
+    setRetailers(['', ...new Set(parcels.map((parcel) => parcel.retailer))]);
   }, [parcels]);
 
   const setFilterValue = (e) => {

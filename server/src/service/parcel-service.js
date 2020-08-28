@@ -12,7 +12,7 @@ function getOneParcel(externalId) {
   if (!parcel) {
     return null;
   }
-  // store retailer.name on parcel.retailer
+  // store retailer.name on parcel.retailer (only on returned parcel, not persisted on db)
   parcel.retailer = (retailerRepo.getOne(parcel.retailer) && retailerRepo.getOne(parcel.retailer).name) || '';
   parcel.customer = (customerRepo.getOne(parcel.customer) && customerRepo.getOne(parcel.customer).email) || '';
   return parcel;

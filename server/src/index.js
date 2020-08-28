@@ -7,10 +7,12 @@ const parcelController = require('./controller/parcel-controller');
 const retailerController = require('./controller/retailer-controller');
 const customerController = require('./controller/customer-controller');
 
+// needed to process JSON bodies and CORS for localhost
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// link to routes
 app.use(PARCEL_ROUTE, parcelController);
 app.use(RETAILER_ROUTE, retailerController);
 app.use(CUSTOMER_ROUTE, customerController);

@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// const parcelService = require('../repository/parcel-repository');
-// const retailerRepo = require('../repository/retailer-repository');
 const parcelService = require('../service/parcel-service');
 
 // middleware that is specific to this router
@@ -34,11 +32,12 @@ router.post('/', (req, res) => {
 
   if (created) {
     res.statusCode = 201;
+    const parcels = parcelService.getAllParcels();
+    res.json(parcels);
   } else {
-    res.statusCode = 409; // resource already exists
+    res.statusCode = 404;
+    res.json({ message: `Error, retailer or customer not found` });
   }
-  const parcels = parcelService.getAllParcels();
-  res.json(parcels);
 });
 
 router.put('/:id', (req, res) => {
