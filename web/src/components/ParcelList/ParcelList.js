@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 // @ts-ignore
 import styles from './ParcelList.module.scss';
 import ParcelItem from './ParcelItem';
+import parcelService from '../../api/parcel';
 
 const ParcelList = (props) => {
   // properties
-  const { parcels = [] } = props;
+  const { parcels = [], reload } = props;
   const [retailers, setRetailers] = useState(['']);
   const [filters, setFilters] = useState({ parcelId: '', retailerName: '', customerEmail: '' });
   const [selected, setSelected] = useState([]);
-
-  console.log({ selected });
 
   // methods
   useEffect(() => {
@@ -42,6 +41,12 @@ const ParcelList = (props) => {
     }
   };
 
+  const handleOnDelete = async () => {
+    await parcelService.deleteParcels(selected);
+    setSelected([]);
+    reload();
+  };
+
   // render
   return (
     <div className={styles.parcelList}>
@@ -66,11 +71,15 @@ const ParcelList = (props) => {
           <span>Customer email:</span>
           <input type="text" name="customerEmail" value={filters.customerEmail} onChange={setFilterValue} />
         </label>
-        {selected.length > 0 && <button>Delete ({selected.length})</button>}
+        {selected.length > 0 && (
+          <button className={`btn btn__full`} onClick={handleOnDelete}>
+            Delete ({selected.length})
+          </button>
+        )}
       </div>
       <ul>
         {applyFilters(parcels).map((parcel) => (
-          <ParcelItem parcel={parcel} selected={isSelected(parcel)} onClick={handleOnParcelClick} />
+          <ParcelItem parcel={parcel} selected={isSelected(parcel)} onClick={handleOnParcelClick} key={parcel.id} />
         ))}
       </ul>
     </div>
@@ -79,6 +88,7 @@ const ParcelList = (props) => {
 
 ParcelList.propTypes = {
   parcels: PropTypes.array.isRequired,
+  reload: PropTypes.func.isRequired,
 };
 
 export default ParcelList;

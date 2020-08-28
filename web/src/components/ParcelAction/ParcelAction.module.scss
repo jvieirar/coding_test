@@ -1,0 +1,31 @@
+.parcelActionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .parcelAction {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: var(--container-border-radius);
+    padding: 8px;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: flex;
+      flex: 1;
+      margin-bottom: 8px;
+      span {
+        flex: 1;
+      }
+      input,
+      select {
+        flex: 3;
+      }
+    }
+  }
+}

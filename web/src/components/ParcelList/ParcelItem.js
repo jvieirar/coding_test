@@ -15,7 +15,7 @@ const ParcelItem = (props) => {
 
   // render
   return (
-    <li key={parcel.id} className={`${styles.item}${selected ? ` ${styles.selected}` : ''}`} onClick={handleOnClick}>
+    <li className={`${styles.item}${selected ? ` ${styles.selected}` : ''}`} onClick={handleOnClick}>
       <h2>{parcel.external_id}</h2>
       <span className={styles.parcelProp}>{parcel.retailer}</span>
       <span className={styles.parcelProp}>{parcel.customer}</span>

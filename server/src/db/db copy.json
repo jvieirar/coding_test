@@ -1,40 +1,28 @@
 {
   "parcels": [
     {
+      "id": 1,
+      "external_id": "PP00012",
+      "customer": 1,
+      "retailer": 1
+    },
+    {
+      "id": 2,
+      "external_id": "PP00042",
+      "retailer": 3,
+      "customer": 4
+    },
+    {
       "id": 3,
       "external_id": "PP00013",
       "customer": 1,
       "retailer": 2
     },
     {
-      "retailer": 1,
-      "customer": 1,
-      "id": 5,
-      "external_id": "PP00051"
-    },
-    {
-      "retailer": 3,
-      "customer": 4,
-      "id": 9,
-      "external_id": "PP00093"
-    },
-    {
-      "retailer": 4,
+      "id": 4,
+      "external_id": "PP00024",
       "customer": 2,
-      "id": 10,
-      "external_id": "PP00104"
-    },
-    {
-      "retailer": 7,
-      "customer": 5,
-      "id": 11,
-      "external_id": "PP00117"
-    },
-    {
-      "retailer": 6,
-      "customer": 5,
-      "id": 12,
-      "external_id": "PP00126"
+      "retailer": 3
     }
   ],
   "retailers": [
@@ -49,22 +37,6 @@
     {
       "id": 3,
       "name": "Decathlon"
-    },
-    {
-      "name": "Reebook",
-      "id": 4
-    },
-    {
-      "name": "Surfstitch",
-      "id": 5
-    },
-    {
-      "name": "The Iconic",
-      "id": 6
-    },
-    {
-      "name": "Wilsons",
-      "id": 7
     }
   ],
   "customers": [

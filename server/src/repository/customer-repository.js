@@ -5,8 +5,8 @@ function getAll() {
   return data['customers'] || [];
 }
 
-function getOne(id) {
-  const customer = data['customers'].find((customer) => customer.id === id);
+function getOne(idOrEmail) {
+  const customer = data['customers'].find((customer) => customer.id === idOrEmail || customer.email === idOrEmail);
   return { ...customer };
 }
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 // @ts-ignore
 import styles from './App.module.scss';
-import ParcelList from './components/ParcelList/ParcelList';
+import ParcelList from './components/ParcelList';
+import parcelApi from './api/parcel';
+import ParcelAction from './components/ParcelAction';
 
 function App() {
   // properties
@@ -15,9 +16,10 @@ function App() {
   }, []);
 
   const getAllParcels = async () => {
-    const { data } = await axios.get('http://localhost:4006/parcel/list');
-    console.log({ data });
-    setParcels(data);
+    console.log('getAllParcels');
+    const parcels = await parcelApi.getAllParcels();
+    console.log({ parcels });
+    setParcels(parcels);
   };
 
   // render
@@ -28,9 +30,11 @@ function App() {
       </header>
       <main>
         <section>
-          <ParcelList parcels={parcels} />
+          <ParcelList parcels={parcels} reload={getAllParcels} />
         </section>
-        <section></section>
+        <section>
+          <ParcelAction reload={getAllParcels} />
+        </section>
       </main>
     </div>
   );

@@ -58,11 +58,11 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const parcelId = req.params.id;
-  const updated = parcelService.removeOneParcel(parcelId);
+  const removed = parcelService.removeOneParcel(parcelId);
 
-  if (updated) {
+  if (removed) {
     res.statusCode = 200;
-    res.json(updated);
+    res.json(removed);
   } else {
     res.statusCode = 404;
     res.json({ message: `Error, parcel ${parcelId} not found` });

@@ -1,4 +1,6 @@
 const { dbPath, getInstance, saveData } = require('../db/db');
+const customerRepository = require('./customer-repository');
+const retailerRepository = require('./retailer-repository');
 const data = getInstance();
 
 function _saveParcelsData(parcelsData) {
@@ -24,11 +26,28 @@ function createOne(parcel) {
   //   "retailer": 1
   // }
   const parcels = data['parcels'];
-  if (!getOne(parcel.external_id)) {
-    parcels.push(parcel);
-    _saveParcelsData(parcels);
-    return true;
+  if (parcel.retailer) {
+    const retailer = retailerRepository.getOne(parcel.retailer);
+    if (!retailer || !retailer.id) {
+      return false;
+    } else {
+      parcel.retailer = retailer.id;
+    }
   }
+  if (parcel.customer) {
+    const customer = customerRepository.getOne(parcel.customer);
+    if (!customer || !customer.id) {
+      return false;
+    } else {
+      parcel.customer = customer.id;
+    }
+  }
+  const lastIndex = parcels.slice(-1)[0].id || 0;
+  parcel.id = lastIndex + 1;
+  parcel.external_id = 'PP' + `${parcel.id}${parcel.retailer}`.padStart(5, '0');
+  parcels.push(parcel);
+  _saveParcelsData(parcels);
+  return true;
   return false;
 }
 
@@ -37,6 +56,23 @@ function updateOne(parcel) {
   if (!existingParcel) {
     return null;
   }
+  if (parcel.retailer) {
+    const retailer = retailerRepository.getOne(parcel.retailer);
+    if (!retailer || !retailer.id) {
+      delete parcel.retailer;
+    } else {
+      parcel.retailer = retailer.id;
+    }
+  }
+  if (parcel.customer) {
+    const customer = customerRepository.getOne(parcel.customer);
+    console.log({ customer });
+    if (!customer || !customer.id) {
+      delete parcel.customer;
+    } else {
+      parcel.customer = customer.id;
+    }
+  }
   const parcels = data['parcels'];
   const updatedParcels = parcels.map((p) => {
     if (p.external_id === parcel.external_id) {
@@ -44,6 +80,7 @@ function updateOne(parcel) {
     }
     return p;
   });
+  data['parcels'] = updatedParcels;
   _saveParcelsData(updatedParcels);
   return { ...existingParcel, ...parcel };
 }
@@ -54,6 +91,7 @@ function removeOne(parcelId) {
     return null;
   }
   const updatedParcels = data['parcels'].filter((parcel) => parcel.external_id !== parcelId);
+  data['parcels'] = updatedParcels;
   _saveParcelsData(updatedParcels);
   return updatedParcels;
 }

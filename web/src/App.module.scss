@@ -11,6 +11,24 @@
   --size-header-height: 60px;
   --boxing-vertical: 8px;
   --boxing-horizontal: 16px;
+  --container-border-radius: 10px;
+}
+
+:global(.btn) {
+  background-color: #b6b6b6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  border: none;
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__full {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
 }
 
 .app {
@@ -36,7 +54,7 @@
     section {
       flex: 1;
       background-color: #f2f2f2;
-      border-radius: 10px;
+      border-radius: var(--container-border-radius);
     }
   }
 }
