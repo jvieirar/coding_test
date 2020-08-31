@@ -36,6 +36,8 @@ const ParcelList = (props) => {
 
   const handleOnParcelClick = (parcel) => {
     // TODO: add or remove parcel to/from selected list
+    // if parcel is selected => remove selected class (remove it from selected list. Check the logic on ParcelItem to see how is the selected class added and removed)
+    // if is NOT selected => add selected class (add parcel to selected array)
   };
 
   const handleOnDelete = async () => {
