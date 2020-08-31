@@ -68,5 +68,10 @@
       display: flex;
       justify-content: center;
     }
+
+    // TODO: add hover to change the cursor to pointer to make sure the user knows its clickable
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
