@@ -56,12 +56,14 @@ const ParcelList = (props) => {
           <span>Retailer name:</span>
           <input type="text" name="retailerName" />
         </label>
-        {selected.length > 0 && (
-          <button className={`btn btn__full`} onClick={handleOnDelete}>
+      </div>
+      {selected.length > 0 && (
+        <div className={styles.buttonsSection}>
+          <button className={`btn`} onClick={handleOnDelete}>
             Delete ({selected.length})
           </button>
-        )}
-      </div>
+        </div>
+      )}
       <ul>
         {applyFilters(parcels).map((parcel) => (
           <ParcelItem parcel={parcel} /*selected={isSelected(parcel)}*/ onClick={handleOnParcelClick} key={parcel.id} />
