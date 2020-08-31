@@ -1,4 +1,4 @@
-const { dbPath, getInstance, saveData } = require('../db/db');
+const { getInstance, saveData } = require('../db/db');
 const data = getInstance();
 
 function _saveRetailersData(retailersData) {
@@ -18,13 +18,14 @@ function createOne(retailer) {
   if (!retailer || !retailer.name) {
     return false;
   }
-  const existingRetailer = getOne(retailer.name);
-  console.log({ existingRetailer });
+  // TODO: check if it exists first to avoid duplication
+  const existingRetailer = {};
   if (existingRetailer && existingRetailer.id) {
     return false;
   }
   const retailers = data['retailers'];
-  const lastIndex = retailers.slice(-1)[0].id || 0;
+  // TODO: get the id of the latest retailer in db
+  const lastIndex = 0;
   retailer.id = lastIndex + 1;
   retailers.push(retailer);
   _saveRetailersData(retailers);

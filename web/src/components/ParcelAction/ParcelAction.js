@@ -16,6 +16,7 @@ function ParcelAction(props) {
 
   // methods
   useEffect(() => {
+    // on component load
     (async () => await loadRetailersAndCustomers())();
   }, []);
 
@@ -31,14 +32,15 @@ function ParcelAction(props) {
   };
 
   const handleAddParcel = async () => {
+    // TODO: create a parcel with the selected retailer and customer. Both have to be selected, don't add otherwise
     await parcelService.createOneParcel({ retailer: parseInt(fields.retailer), customer: parseInt(fields.customer) });
-    reload();
+    // TODO: remember to update parcel list view if adding parcel was successful
   };
 
   const handleCreateRetailer = async () => {
     await retailerService.createOneRetailer({ name: fields.retailerName });
-    setFields((curr) => ({ ...curr, retailerName: '' }));
-    loadRetailersAndCustomers();
+    // TODO: clean retailerName field
+    // TODO: reload customer and retailer drop downs on Add Parcel section
   };
 
   const setFieldValue = (e) => {
@@ -54,7 +56,6 @@ function ParcelAction(props) {
         <div className={styles.fields}>
           <label>
             <span>Retailer:</span>
-            {/* <input type="text" name="retailer" value={fields.retailer} onChange={setFieldValue} /> */}
             <select name="retailer" onChange={setFieldValue} value={fields.retailer}>
               <option value="">-</option>
               {retailers.map((retailer) => (
@@ -66,8 +67,7 @@ function ParcelAction(props) {
           </label>
           <label>
             <span>Customer:</span>
-            {/* <input type="text" name="retailer" value={fields.retailer} onChange={setFieldValue} /> */}
-            <select name="customer" onChange={setFieldValue} value={fields.customer}>
+            <select name="customer">
               <option value="">-</option>
               {customers.map((customer) => (
                 <option value={customer.id} key={customer.id}>
@@ -83,16 +83,7 @@ function ParcelAction(props) {
       </div>
       <div className={styles.parcelAction}>
         <h1>Create retailer</h1>
-        <div className={styles.fields}>
-          <label>
-            <span>Name:</span>
-            {/* <input type="text" name="retailer" value={fields.retailer} onChange={setFieldValue} /> */}
-            <input name="retailerName" type="text" onChange={setFieldValue} value={fields.retailerName} />
-          </label>
-          <button className={`btn btn__full`} onClick={handleCreateRetailer}>
-            Create
-          </button>
-        </div>
+        <div className={styles.fields}>{/* TODO: complete */}</div>
       </div>
     </div>
   );

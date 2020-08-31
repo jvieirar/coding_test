@@ -9,12 +9,17 @@ const ParcelList = (props) => {
   // properties
   const { parcels = [], reload } = props;
   const [retailers, setRetailers] = useState(['']);
-  const [filters, setFilters] = useState({ parcelId: '', retailerName: '', customerEmail: '' });
+  const [filters, setFilters] = useState({ parcelId: '', retailerName: '' });
   const [selected, setSelected] = useState([]);
 
   // methods
   useEffect(() => {
-    setRetailers(['', ...new Set(parcels.map((parcel) => parcel.retailer))]);
+    // TODO: * Bonus: show dropdown with a list of all retailers existing in the parcel list to filter by retailer
+    const uniqueRetailers = [
+      /* make sure you don't add duplicates */
+    ];
+    setRetailers(['', ...uniqueRetailers]);
+    // [parcels] means that this function will be called every time the parcels property changes
   }, [parcels]);
 
   const setFilterValue = (e) => {
@@ -23,28 +28,19 @@ const ParcelList = (props) => {
   };
 
   const applyFilters = (originalParcels) => {
-    return originalParcels.filter(
-      (parcel) =>
-        parcel.external_id.toUpperCase().includes(filters.parcelId.toUpperCase()) &&
-        parcel.retailer.toUpperCase().includes(filters.retailerName.toUpperCase()) &&
-        parcel.customer.toUpperCase().includes(filters.customerEmail.toUpperCase())
-    );
+    // TODO: filter parcels here
+    return originalParcels;
   };
 
-  const isSelected = (parcel) => selected.map((sel) => sel.external_id).includes(parcel.external_id);
+  // const isSelected = (parcel) => selected.map((sel) => sel.external_id).includes(parcel.external_id);
 
   const handleOnParcelClick = (parcel) => {
-    if (!isSelected(parcel)) {
-      setSelected((currentSelected) => [...currentSelected, parcel]);
-    } else {
-      setSelected((currentSelected) => currentSelected.filter((sel) => sel.external_id !== parcel.external_id));
-    }
+    // TODO: add or remove parcel to/from selected list
   };
 
   const handleOnDelete = async () => {
-    await parcelService.deleteParcels(selected);
-    setSelected([]);
-    reload();
+    // TODO: call api to delete selected parcels. Remember to clean selected list after deletion
+    // * TIP: you have a function from the parent component to reload parcel list from db
   };
 
   // render
@@ -58,18 +54,7 @@ const ParcelList = (props) => {
         </label>
         <label>
           <span>Retailer name:</span>
-          {/* <input type="text" name="retailerName" value={filters.retailerName} onChange={setFilterValue} /> */}
-          <select name="retailerName" onChange={setFilterValue} value={filters.retailerName}>
-            {retailers.map((retailer) => (
-              <option value={retailer} key={retailer}>
-                {retailer === '' ? 'All' : retailer}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <span>Customer email:</span>
-          <input type="text" name="customerEmail" value={filters.customerEmail} onChange={setFilterValue} />
+          <input type="text" name="retailerName" />
         </label>
         {selected.length > 0 && (
           <button className={`btn btn__full`} onClick={handleOnDelete}>
@@ -79,7 +64,7 @@ const ParcelList = (props) => {
       </div>
       <ul>
         {applyFilters(parcels).map((parcel) => (
-          <ParcelItem parcel={parcel} selected={isSelected(parcel)} onClick={handleOnParcelClick} key={parcel.id} />
+          <ParcelItem parcel={parcel} /*selected={isSelected(parcel)}*/ onClick={handleOnParcelClick} key={parcel.id} />
         ))}
       </ul>
     </div>

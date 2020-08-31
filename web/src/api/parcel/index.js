@@ -32,9 +32,7 @@ export async function updateOneParcel(parcel) {
 
 export async function deleteOneParcel(parcel) {
   try {
-    console.log('delete one parcel', { parcel });
     const { data } = await axios.delete(`http://localhost:4006/parcel/${parcel.external_id}`);
-    console.log({ deleteOneData: data });
     return data;
   } catch (error) {
     console.error({ error });
@@ -54,7 +52,6 @@ export async function deleteParcels(parcels) {
   } catch (error) {
     console.error({ error });
   }
-  console.log({ resultingParcels });
   return resultingParcels;
 }
 

@@ -20,35 +20,25 @@ function getOne(externalId) {
 
 function createOne(parcel) {
   // {
-  //   "id": 1,
-  //   "external_id": "PP00042",
   //   "customer": 1,
   //   "retailer": 1
   // }
   const parcels = data['parcels'];
-  if (parcel.retailer) {
-    const retailer = retailerRepository.getOne(parcel.retailer);
-    if (!retailer || !retailer.id) {
-      return false;
-    } else {
-      parcel.retailer = retailer.id;
-    }
+
+  if (!parcel.retailer || !parcel.customer) {
+    return false;
   }
-  if (parcel.customer) {
-    const customer = customerRepository.getOne(parcel.customer);
-    if (!customer || !customer.id) {
-      return false;
-    } else {
-      parcel.customer = customer.id;
-    }
-  }
-  const lastIndex = parcels.slice(-1)[0].id || 0;
+
+  // TODO: verify if the retailer and customer provided exist in db before adding the parcel
+
+  // TODO: get the id of the latest parcel in db
+  const lastIndex = 0;
   parcel.id = lastIndex + 1;
-  parcel.external_id = 'PP' + `${parcel.id}${parcel.retailer}`.padStart(5, '0');
+  // TODO: calculate the body following the pattern: PP + xxx + parcel.id + retailer.id (note that '+' is concatenation, not algebraic sum as we are building an string)
+  parcel.external_id = 'PP' + '';
   parcels.push(parcel);
   _saveParcelsData(parcels);
   return true;
-  return false;
 }
 
 function updateOne(parcel) {

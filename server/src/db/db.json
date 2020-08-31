@@ -25,16 +25,16 @@
       "external_id": "PP00127"
     },
     {
-      "retailer": 7,
-      "customer": 1,
+      "retailer": 4,
+      "customer": 3,
       "id": 13,
-      "external_id": "PP00137"
+      "external_id": "PP00134"
     },
     {
-      "retailer": 6,
-      "customer": 1,
+      "retailer": 3,
+      "customer": 5,
       "id": 14,
-      "external_id": "PP00146"
+      "external_id": "PP00143"
     }
   ],
   "retailers": [
