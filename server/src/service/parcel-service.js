@@ -13,6 +13,7 @@ function getOneParcel(externalId) {
     return null;
   }
   // store retailer.name on parcel.retailer (only on returned parcel, not persisted on db)
+  // TODO: can you optimise the following code? Why do you think it could cause performance issues?
   parcel.retailer = (retailerRepo.getOne(parcel.retailer) && retailerRepo.getOne(parcel.retailer).name) || '';
   parcel.customer = (customerRepo.getOne(parcel.customer) && customerRepo.getOne(parcel.customer).email) || '';
   return parcel;

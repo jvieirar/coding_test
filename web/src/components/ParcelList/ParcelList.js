@@ -29,6 +29,16 @@ const ParcelList = (props) => {
 
   const applyFilters = (originalParcels) => {
     // TODO: filter parcels here
+    // remember that a parcel returned by the API follows the schema:
+    // {
+    //   "id": number,
+    //   "external_id": string,
+    //   "customer": string,
+    //   "retailer": string
+    // }
+    // * TIP: you can use ES6 filter and includes method. Consider allowing to filter in a case insensitive way (accepting uppercase and lowercase)
+    const filteredParcels = [];
+    // return filteredParcels;
     return originalParcels;
   };
 

@@ -13,9 +13,6 @@ function getAll() {
 
 function getOne(externalId) {
   const parcel = data['parcels'].find((parcel) => parcel.external_id === externalId);
-  // TODO: explain what's the difference between return parcel and return {...parcel} and why the UI shows empty retailer and email for return parcel
-  // TODO: you can leave your response here: 
-  // return parcel;
   return { ...parcel };
 }
 
